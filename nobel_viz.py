@@ -17,14 +17,15 @@ winners=[
         {'name':'Dorothy Hodgkin','category':'Chemistry'}
         ]
 
-@app.route("/")
+@app.route("/test")
 def hello():
     return "Hello World!"
 
 
-@app.route("/demolist")
+@app.route("/")
 def demo_list():
     return render_template('testj2.html',heading="A little winners' list",winners=winners)
+
 
 
 if __name__ == "__main__":

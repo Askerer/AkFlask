@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <style>
 
-        div {
+        h3 {
           margin: 0;
           background: #111;
           min-width: 960px;
@@ -20,7 +20,15 @@
         </li>
         {% endfor %}
     </ul>
-    <div></div>
+
+
+    <h2 id ='data-title'></h2>
+    <div id='data'>
+        <pre></pre>
+    </div>
+
+    
+    <h3></h3>
 </body>
 
 <script src="//d3js.org/d3.v3.min.js"></script>
@@ -37,7 +45,7 @@
         r = 200,
         τ = 2 * Math.PI;
 
-    var canvas = d3.select("div").append("canvas")
+    var canvas = d3.select("h3").append("canvas")
         .attr("width", width)
         .attr("height", height)
         .on("ontouchstart" in document ? "touchmove" : "mousemove", move);
@@ -66,6 +74,20 @@
                 };
             });
     });
+
+    d3.json('static/data/nobel_winners_biopic.json',function(error,data){
+
+        if(error){
+            console.log(error);
+        }
+
+        d3.select('h2#data-title').text('All the Nobel-winners');
+        d3.select('div#data pre')
+          .html(JSON.stringify(data,null,4));
+
+
+    });
+
 
     function move() {
         var mouse = d3.mouse(this);
